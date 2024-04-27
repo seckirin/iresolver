@@ -64,7 +64,8 @@ iresolver \
   -threads 200 \
   -timeout 10 \
   -retry 3 \
-  -count 1000
+  -count 1000 \
+  -outptu resolvers.txt
 ```
 
 # DNS Server List
@@ -93,9 +94,9 @@ Usage of iresolver
   -target string
     	Specify the file or URL of the DNS server list to be checked
   -threads int
-    	Specify the number of running threads (default 5)
+    	Specify the number of running threads (default 20)
   -timeout int
-    	Specify the timeout for DNS requests (default 3)
+    	Specify the timeout for DNS requests (default 10)
 ```
 
 # Additional Notes

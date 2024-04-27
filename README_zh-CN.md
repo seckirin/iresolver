@@ -56,7 +56,7 @@ iresolver -target target.txt -threads 200
 
 - 使用自定义基准 DNS 服务器和域名从 Public DNS 中筛选可用的 DNS 服务器
 - 指定线程为 200、超时时间为 10 秒、重试次数为 3
--  当可用 DNS 服务器的数量达到 1000 时停止运行程序
+- 当可用 DNS 服务器的数量达到 1000 时停止运行程序
 - 将结果保存到 resolvers.txt 文件
 
 ```bash
@@ -68,6 +68,7 @@ iresolver \
   -timeout 10 \
   -retry 3 \
   -count 1000
+  -outptu resolvers.txt
 ```
 
 # DNS 服务器列表
@@ -96,9 +97,9 @@ Usage of iresolver
   -target string
     	Specify the file or URL of the DNS server list to be checked
   -threads int
-    	Specify the number of running threads (default 5)
+    	Specify the number of running threads (default 20)
   -timeout int
-    	Specify the timeout for DNS requests (default 3)
+    	Specify the timeout for DNS requests (default 10)
 ```
 
 # 其他说明
