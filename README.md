@@ -43,7 +43,7 @@ For more parameter explanations, please refer to [Complete Parameters](#complete
 iresolver -target https://public-dns.info/nameservers.txt -threads 200
 ```
 
-**Example 2:** Use the built-in baseline DNS servers and domains of the tool to filter available DNS servers from the target.txt file
+**Example 2:** Use the built-in baseline DNS servers and domains of the tool to filter available DNS servers from the target.txt file, specify threads as 200
 
 ```bash
 iresolver -target target.txt -threads 200
@@ -62,9 +62,9 @@ iresolver \
   -dns 1.1.1.1,8.8.8.8 \
   -domain qq.com,tencent.com \
   -threads 200 \
-  - timeout 10 \
+  -timeout 10 \
   -retry 3 \
-  -count 20
+  -count 1000
 ```
 
 # DNS Server List

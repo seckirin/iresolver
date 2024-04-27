@@ -40,13 +40,13 @@ go build -o iresolver cmd/iresolver/main.go
 
 # 使用示例
 
-**示例一：使用工具内置的基准 DNS 服务器和域名从 Public DNS 筛选可用的 DNS 服务器，指定线程为 200**
+**示例一:** 使用工具内置的基准 DNS 服务器和域名从 Public DNS 筛选可用的 DNS 服务器，指定线程为 200
 
 ```bash
 iresolver -target https://public-dns.info/nameservers.txt -threads 200
 ```
 
-**示例二：使用工具内置的基准 DNS 服务器和域名从 target.txt 文件中筛选可用的 DNS 服务器**
+**示例二:** 使用工具内置的基准 DNS 服务器和域名从 target.txt 文件中筛选可用的 DNS 服务器，指定线程为 200
 
 ```bash
 iresolver -target target.txt -threads 200
@@ -65,9 +65,9 @@ iresolver \
   -dns 1.1.1.1,8.8.8.8 \
   -domain qq.com,tencent.com \
   -threads 200 \
-  - timeout 10 \
+  -timeout 10 \
   -retry 3 \
-  -count 20
+  -count 1000
 ```
 
 # DNS 服务器列表
