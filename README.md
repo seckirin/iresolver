@@ -13,7 +13,7 @@ Originally, I was using [dnsvalidator](https://github.com/vortexau/dnsvalidator)
 You can directly install this program using go install after configuring the GOBIN directory.
 
 ```bash
-go install github.com/yuukisec/iresolver@latest
+go install github.com/yuukisec/iresolver/cmd/iresolver@latest
 iresolver -h
 ```
 
@@ -22,7 +22,7 @@ You can also clone the project to your local machine and compile it yourself.
 ```bash
 git clone https://github.com/yuukisec/iresolver
 cd iresolver
-go build -o iresolver cmd/iresovler/main.go
+go build -o iresolver cmd/iresolver/main.go
 ./iresolver -h
 ```
 

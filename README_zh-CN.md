@@ -13,7 +13,7 @@ iresolver 是一个用 Go 语言编写的 DNS 解析器，它可以比较不同 
 可以在配置了 GOBIN 目录之后直接使用 go install 安装本程序。
 
 ```bash
-go install github.com/yuukisec/iresolver@latest
+go install github.com/yuukisec/iresolver/cmd/iresolver@latest
 iresolver -h
 ```
 
@@ -22,7 +22,7 @@ iresolver -h
 ```bash
 git clone https://github.com/yuukisec/iresolver
 cd iresolver
-go build -o iresolver cmd/iresovler/main.go
+go build -o iresolver cmd/iresolver/main.go
 ./iresolver -h
 ```
 
