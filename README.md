@@ -102,3 +102,4 @@ Usage of iresolver
 # Additional Notes
 
 - The program runs in multithreaded mode. The quantity specified by the -count parameter may not be completely accurate. The results will only be more, not less.
+- Upon direct execution, the program will automatically select DNS servers from Public DNS as the target. This can be modified using the -target parameter.

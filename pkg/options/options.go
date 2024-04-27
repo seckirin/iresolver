@@ -22,13 +22,13 @@ type Options struct {
 }
 
 func ParseOptions() Options {
-	target := flag.String("target", "", "Specify the file or URL of the DNS server list to be checked")
+	target := flag.String("target", "https://public-dns.info/nameservers.txt", "Specify the file or URL of the DNS server list to be checked")
 	output := flag.String("output", "", "Specify the output file")
 	silent := flag.Bool("silent", false, "Whether to only output successfully resolved DNS servers")
 	dns := flag.String("dns", "1.1.1.1,8.8.8.8", "Manually specify DNS servers, multiple servers are separated by commas")
 	domain := flag.String("domain", "qq.com,tencent.com", "Manually specify domains, multiple domains are separated by commas")
 	threads := flag.Int("threads", 20, "Specify the number of running threads")
-	timeout := flag.Int("timeout", 5, "Specify the timeout for DNS requests")
+	timeout := flag.Int("timeout", 10, "Specify the timeout for DNS requests")
 	retry := flag.Int("retry", 2, "Specify the number of retries when matching fails")
 	count := flag.Int("count", 65535, "Specify the program to stop running after writing how many qualified domain servers")
 

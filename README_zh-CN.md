@@ -105,3 +105,4 @@ Usage of iresolver
 # 其他说明
 
 - 程序是多线程运行的，-count 参数指定的数量不一定完全准确。结果只会多不会少。
+- 直接运行程序时将自动选择 [Public DNS](https://public-dns.info/nameservers.txt) 中的 DNS 服务器作为目标，可以通过 -target 参数修改
