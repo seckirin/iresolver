@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"net"
 	"net/http"
+	"net/url"
 	"os"
 	"strings"
 	"time"
@@ -52,34 +53,17 @@ func ParseOptions() Options {
 	return opts
 }
 
-//func GetTargetServers(target string) ([]string, error) {
-//	if strings.HasPrefix(target, "http://") || strings.HasPrefix(target, "https://") {
-//		resp, err := http.Get(target)
-//		if err != nil {
-//			return nil, err
-//		}
-//		defer resp.Body.Close()
-//
-//		body, err := ioutil.ReadAll(resp.Body)
-//		if err != nil {
-//			return nil, err
-//		}
-//
-//		return strings.Split(string(body), "\n"), nil
-//	} else {
-//		data, err := ioutil.ReadFile(target)
-//		if err != nil {
-//			return nil, err
-//		}
-//
-//		return strings.Split(string(data), "\n"), nil
-//	}
-//}
-
 func GetTargetServers(target string) ([]string, error) {
 	if strings.HasPrefix(target, "http://") || strings.HasPrefix(target, "https://") {
+		// Extract the hostname from the URL
+		u, err := url.Parse(target)
+		if err != nil {
+			return nil, err
+		}
+		hostname := u.Hostname()
+
 		// Check if the targetServer is reachable
-		_, err := net.DialTimeout("tcp", strings.TrimPrefix(strings.TrimPrefix(target, "http://"), "https://")+":80", 10*time.Second)
+		_, err = net.DialTimeout("tcp", hostname+":80", 10*time.Second)
 		if err != nil {
 			return nil, except.ErrServerUnreachable
 		}
