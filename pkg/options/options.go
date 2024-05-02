@@ -3,8 +3,11 @@ package options
 
 import (
 	"flag"
+	"github.com/yuukisec/iresolver/pkg/except"
 	"io/ioutil"
+	"net"
 	"net/http"
+	"os"
 	"strings"
 	"time"
 )
@@ -49,8 +52,38 @@ func ParseOptions() Options {
 	return opts
 }
 
+//func GetTargetServers(target string) ([]string, error) {
+//	if strings.HasPrefix(target, "http://") || strings.HasPrefix(target, "https://") {
+//		resp, err := http.Get(target)
+//		if err != nil {
+//			return nil, err
+//		}
+//		defer resp.Body.Close()
+//
+//		body, err := ioutil.ReadAll(resp.Body)
+//		if err != nil {
+//			return nil, err
+//		}
+//
+//		return strings.Split(string(body), "\n"), nil
+//	} else {
+//		data, err := ioutil.ReadFile(target)
+//		if err != nil {
+//			return nil, err
+//		}
+//
+//		return strings.Split(string(data), "\n"), nil
+//	}
+//}
+
 func GetTargetServers(target string) ([]string, error) {
 	if strings.HasPrefix(target, "http://") || strings.HasPrefix(target, "https://") {
+		// Check if the targetServer is reachable
+		_, err := net.DialTimeout("tcp", strings.TrimPrefix(strings.TrimPrefix(target, "http://"), "https://")+":80", 10*time.Second)
+		if err != nil {
+			return nil, except.ErrServerUnreachable
+		}
+
 		resp, err := http.Get(target)
 		if err != nil {
 			return nil, err
@@ -64,6 +97,12 @@ func GetTargetServers(target string) ([]string, error) {
 
 		return strings.Split(string(body), "\n"), nil
 	} else {
+		// Check if the target file is accessible
+		_, err := os.Stat(target)
+		if err != nil {
+			return nil, except.ErrFileUnreachable
+		}
+
 		data, err := ioutil.ReadFile(target)
 		if err != nil {
 			return nil, err

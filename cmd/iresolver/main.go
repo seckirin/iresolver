@@ -12,11 +12,15 @@ func main() {
 	opts := options.ParseOptions()
 
 	// 读取文件内容
-	tLines, _ := options.GetTargetServers(opts.Target)
+	tLines, err := options.GetTargetServers(opts.Target)
+	if err != nil {
+		output.PrintError(fmt.Errorf("Error getting target servers: %w", err))
+		return
+	}
 
 	// 打印文件行数
 	if !opts.Silent {
-		output.PrintInfo(fmt.Sprintf("File %s contains %d lines", opts.Target, len(tLines)))
+		output.PrintInfo(fmt.Sprintf("File/Server %s contains %d lines", opts.Target, len(tLines)))
 	}
 
 	// 解析并比较 DNS 结果
